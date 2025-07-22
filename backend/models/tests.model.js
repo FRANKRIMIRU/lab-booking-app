@@ -16,23 +16,20 @@ const testSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    enum: ["Blood", "COVID-19", "Urine", "General", "Other"],//
+   
     default: "General",
   },
-  available: {
-    type: Boolean,
-    default: true,
+  availability: {
+    type:Boolean,
   },
+
   sampleRequired: {
     type: String,
-    enum: ["Blood", "Urine", "Saliva", "Swab", "None"],
+    
+    default:"General"
   },
-  processingTime: {
-    type: String, // e.g., "24 hours", "2-3 days"
-  },
-  instructions: {
-    type: String,
-  },
+ 
+  
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

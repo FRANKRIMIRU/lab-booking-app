@@ -7,7 +7,10 @@ function Navbar() {
   return (
     <nav className="bg-white shadow-md p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <h1 className="text-xl font-bold text-blue-600">LabBooking</h1>
+        <h1 className="text-xl font-bold text-blue-600 hover:text-blue-700 cursor-pointer">
+          <Link to="/"></Link>
+          LabBooking
+        </h1>
         <ul className="flex space-x-6">
           <li>
             <Link to="/" className="hover:text-blue-600">
@@ -30,13 +33,11 @@ function Navbar() {
             </Link>
           </li>
           {/* ✅ Show Admin Dashboard only if user is admin */}
-          {user?.role === "admin" &&
-            location.pathname ===
-              "/" && (
-                <li>
-                  <Link to="/admin-dashboard">Admin dashboard</Link>
-                </li>
-              )}
+          {user?.role === "admin" && location.pathname === "/" && (
+            <li>
+              <Link to="/admin-dashboard">Admin dashboard</Link>
+            </li>
+          )}
         </ul>
       </div>
     </nav>
