@@ -129,7 +129,6 @@ function SignUp() {
           </form>
         </div>
 
-        <h1 className="text-center font-semibold m-4">Sign Up</h1>
       </div>
     </section>
   );
