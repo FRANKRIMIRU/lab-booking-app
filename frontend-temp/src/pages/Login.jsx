@@ -7,8 +7,8 @@ import loginImage from "../assets/signup.avif";
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -25,17 +25,20 @@ function Login() {
       })
       .catch((err) => {
         console.error(err.message);
-      });
-  }
 
+        if (err.response && err.response.status === 401) {
+          alert("Wrong email or password.");
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      });
+  };
 
   return (
     <section className="relative bg-gray-50">
       {/* mobile heading */}
       <div className="block lg:hidden text-center py-6 px-4">
-        <h1 className="text-3xl font-bold text-blue-600">
-          Login
-        </h1>
+        <h1 className="text-3xl font-bold text-blue-600">Login</h1>
       </div>
       {/* Image + Overlay for larger screens */}
       <div className="relative w-full overflow-hidden shadow-md  block h-[80vh] lg:h-[90vh]">
@@ -97,6 +100,16 @@ function Login() {
                 Sign Up
               </Link>
             </p>
+            <p>
+              {" "}
+              Forgot your password?
+              <Link
+                to="/forgot-password"
+                className="text-blue-600 hover:underline"
+              >
+                Reset Password
+              </Link>
+            </p>
           </form>
         </div>
       </div>
@@ -104,5 +117,4 @@ function Login() {
   );
 }
 
-     
-  export default Login;           
+export default Login;

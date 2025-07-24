@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
 import testRouter from './routes/test.routes.js';
 import adminRouter from './routes/adminRoutes.js';
 import bookingsRouter from "./routes/bookings.routes.js";
+import emailRouter from './routes/testEmail.routes.js';
 
 dotenv.config();
 const app = express();
@@ -25,7 +26,7 @@ app.use('/api/v1/users', userRouter)
 app.use('/api/v1/tests', testRouter)
 app.use('/api/v1/admin',adminRouter)
 app.use("/api/v1/bookings", bookingsRouter);
-
+app.use("/api/email",emailRouter)
 app.get("/", (req, res) => {
   res.send('server is ready')
 })
