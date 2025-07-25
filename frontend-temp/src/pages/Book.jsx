@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 function Book() {
+  const [userName, setUserName] = useState("");
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +20,7 @@ function Book() {
     axios
       .post("http://localhost:5000/api/v1/bookings", formData)
       .then((res) => {
+        setUserName(formData.name);
         setFormData({ name: "", email: "", date: "", testType: "" });
         console.log(res.data);
         setBookingSuccess(true);
@@ -35,7 +38,7 @@ function Book() {
             Booking Successful!
           </h2>
           <p className="mb-6 text-lg">
-            Thank you<span className="font-semibold">{formData.name}</span>.
+            Thank you<span className="font-semibold">{userName}</span>.
             Your lab test has been booked.
           </p>
           <Link

@@ -41,6 +41,8 @@ const calendar = google.calendar({ version: "v3", auth: oAuth2Client });
     });
     res.status(200).json({ success: true, eventId: response.data.id });
   } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
-  }
+  console.error("Google Calendar API Error:", err.response?.data || err.message);
+  res.status(500).json({ success: false, message: err.message });
+}
+
 };
