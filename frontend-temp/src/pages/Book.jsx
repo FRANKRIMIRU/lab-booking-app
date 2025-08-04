@@ -66,7 +66,8 @@ function Book({ user }) {
         </div>
       </section>
     );
-  }
+  } else 
+  
 
   return (
     <section className="py-16 px-4 bg-white min-h-screen">
