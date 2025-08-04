@@ -27,6 +27,7 @@ function Book() {
       })
       .catch((err) => {
         console.error("Booking failed:", err);
+        alert("Booking failed,please try again")
       });
   };
 
@@ -50,7 +51,8 @@ function Book() {
         </div>
       </section>
     );
-  }
+  } else 
+  
 
   return (
     <section className="py-16 px-4 bg-white min-h-screen">
