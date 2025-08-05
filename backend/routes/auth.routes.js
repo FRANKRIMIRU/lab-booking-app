@@ -14,7 +14,7 @@ authRouter.post('/sign-up', async (req, res) => {
       return res.status(400).json({message: 'User already exists with this email'})
     }
     
-    const role= adminCode === process.env.ADMIN_CODE?"admin":"client"
+    const role= adminCode === process.env.ADMIN_CODE? "admin":"client"
 
     const user = await UserModel.create({
       name,

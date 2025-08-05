@@ -39,7 +39,7 @@ function Book() {
             Booking Successful!
           </h2>
           <p className="mb-6 text-lg">
-            Thank you<span className="font-semibold">{userName}</span>.
+            Thank you <span className="font-semibold">{userName}</span>.
             Your lab test has been booked.
           </p>
           <Link

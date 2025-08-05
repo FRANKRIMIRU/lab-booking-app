@@ -2,9 +2,9 @@ const { google } = require('googleapis');
 const readline = require('readline');
 
 const oAuth2Client = new google.auth.OAuth2(
-  "1087708809474-k19tsdmvd6u0uhrl9csdcroo4nq1ouh9.apps.googleusercontent.com",
-  "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",
-  "http://localhost:5000/auth/calendar"
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  process.env.REDIRECT_URI
 );
 
 const authUrl = oAuth2Client.generateAuthUrl({

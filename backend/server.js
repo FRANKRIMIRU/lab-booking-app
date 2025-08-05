@@ -35,5 +35,7 @@ app.get("/", (req, res) => {
 
 app.listen(5000, () => {
   connectDB();
+ 
+
   console.log('server started at http://localhost:5000')
 })
