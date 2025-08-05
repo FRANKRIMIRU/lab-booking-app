@@ -1,10 +1,11 @@
 import { google } from "googleapis";
 
 const oAuth2Client = new google.auth.OAuth2(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  "http://localhost:5000/auth/calendar" 
+  "1087708809474-k19tsdmvd6u0uhrl9csdcroo4nq1ouh9.apps.googleusercontent.com", // client ID
+  "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",                                      // client secret
+  "http://localhost:5000/auth/calendar"                                       // redirect URI
 );
+
 
 oAuth2Client.setCredentials({
   refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
