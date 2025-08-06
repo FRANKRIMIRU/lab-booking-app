@@ -6,6 +6,11 @@ const testSchema = new mongoose.Schema({
     required: true,
     trim:true,
   },
+  emoji: {
+    type: String,
+    required:true
+  },
+  
   description: {
     type: String,
     required:true

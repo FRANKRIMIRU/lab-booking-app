@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import Home from "./pages/Home.jsx";
 import LabServices from "./pages/LabServices.jsx";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import Contact from "./pages/Contact.jsx";
 import Book from "./pages/Book.jsx";
 import SignUp from "./pages/SignUp.jsx";
@@ -13,7 +13,7 @@ import ForgotPassword from "./pages/ForgotPassword.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 
 
-function LayoutWrapper() {
+function LayoutWrapper({user}) {
   const location = useLocation();
   const authRoutes = ["/login", "/signup", "/forgot-password"];
   const isResetPasswordRoute = location.pathname.startsWith("/reset-password");
@@ -25,9 +25,12 @@ function LayoutWrapper() {
       <Routes>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={user ? <Home /> : <Navigate to="/login" replace />}
+        />
         <Route path="/services" element={<LabServices />} />
-        <Route path="/book" element={<Book />} />
+        <Route path="/book" element={<Book user={user} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />

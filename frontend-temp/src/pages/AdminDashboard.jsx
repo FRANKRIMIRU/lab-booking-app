@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import EmojiPicker from "emoji-picker-react";
+
 
 function AdminDashboard() {
   const [userCount, setUserCount] = useState(0);
@@ -10,12 +12,15 @@ function AdminDashboard() {
   const [availability, setAvailability] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [name, setName] = useState("");
+   const [emoji, setEmoji] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [tests, setTests] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [currentId, setCurrentId] = useState(null);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+
 
 
 
@@ -45,7 +50,8 @@ function AdminDashboard() {
            category,
            price,
            description,
-           availability
+           availability,
+           emoji
          },
          { withCredentials: true }
        );
@@ -66,7 +72,9 @@ function AdminDashboard() {
            category,
            price,
            description,
-           availability
+           availability,
+           emoji
+           
          },
          { withCredentials: true }
        );
@@ -76,6 +84,7 @@ function AdminDashboard() {
 
      // ✅ Common reset actions for both edit and add
      setShowAddForm(false);
+     setEmoji("")
      setName("");
      setCategory("");
      setPrice("");
@@ -86,13 +95,13 @@ function AdminDashboard() {
    }
  };
 
-     
-  
+    
   const handleEdit = (test) => {
     setShowAddForm(true); // open the form if it's closed
     setIsEditing(true);
     setCurrentId(test._id);
     setName(test.name);
+    setEmoji(test.emoji)
     setCategory(test.category);
     setPrice(test.price);
      setAvailability(test.availability);
@@ -186,6 +195,39 @@ function AdminDashboard() {
             onSubmit={handleAddTest}
             className="my-4 space-y-4 bg-white border p-4 text-sm grid grid-cols-1 md:grid-cols-1 gap-4"
           >
+            <div className="mb-4">
+              <label className="block mb-2 font-medium">
+                Emoji/Icon for Test:
+              </label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="text"
+                  name="emoji"
+                  value={emoji}
+                  readOnly
+                  placeholder="Click to pick an emoji"
+                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  className="w-full border p-2 rounded cursor-pointer"
+                />
+                <span
+                  onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+                  className="cursor-pointer text-xl"
+                >
+                  😊
+                </span>
+              </div>
+              {showEmojiPicker && (
+                <div className="mt-2 z-10">
+                  <EmojiPicker
+                    onEmojiClick={(emojiData) => {
+                      setEmoji(emojiData.emoji);
+                      setShowEmojiPicker(false);
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -237,7 +279,7 @@ function AdminDashboard() {
                   setPrice("");
                   setAvailability("");
                   setDescription("");
-                  }}
+                }}
               >
                 Cancel Test
               </button>

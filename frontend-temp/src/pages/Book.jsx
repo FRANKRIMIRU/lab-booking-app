@@ -1,16 +1,31 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-function Book() {
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+
+function Book({user}) {
   const [userName, setUserName] = useState("");
+const location = useLocation();
+const selectedTest = location.state?.testName || "";
 
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name: user?.name ||"",
+    email: user?.email||"",
     date: "",
-    testType: "",
+    testType: selectedTest,
   });
   const [bookingSuccess, setBookingSuccess] = useState(false);
+    useEffect(() => {
+      const user = JSON.parse(localStorage.getItem("user")); // Or from auth context
+      if (user) {
+        setFormData((prev) => ({
+          ...prev,
+          name: user.name,
+          email: user.email,
+        }));
+      }
+    }, [user]);
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -65,6 +80,7 @@ function Book() {
             type="text"
             placeholder="Full Name"
             name="name"
+            value={formData.name}
             onChange={handleChange}
             className="w-full border border-gray-300 p-3 rounded"
           />
@@ -72,6 +88,7 @@ function Book() {
             type="email"
             name="email"
             placeholder="Email"
+            value={formData.email}
             onChange={handleChange}
             className="w-full border border-gray-300 p-3 rounded"
           />
@@ -81,17 +98,13 @@ function Book() {
             onChange={handleChange}
             className="w-full border border-gray-300 p-3 rounded"
           />
-          <select
+          <input
             className="w-full border border-gray-300 p-3 rounded"
             name="testType"
+            value={formData.testType}
             onChange={handleChange}
           >
-            <option value="disabled selected">Select test</option>
-            <option>Blood Test</option>
-            <option>COVID-19 Test</option>
-            <option>Urine Analysis</option>
-            <option>Other</option>
-          </select>
+          </input>
           <button
             type="submit"
             className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
