@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 
-
 function AdminDashboard() {
   const [userCount, setUserCount] = useState(0);
   const [users, setUsers] = useState([]);
@@ -175,7 +174,7 @@ function AdminDashboard() {
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-3xl font-bold mb-6 text-blue-700">Admin Dashboard</h1>
 
-      {/* Section: Stats */}
+      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white p-4 shadow rounded-lg">
           <h2 className="text-sm text-gray-500">Total Users</h2>
@@ -193,7 +192,7 @@ function AdminDashboard() {
         </div>
       </div>
 
-      {/* Section: Lab Test Controls */}
+      {/* Lab Test Controls */}
       <div className="bg-white p-6 rounded-lg shadow">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold mb-4 ">Manage Lab Tests</h2>
@@ -494,7 +493,7 @@ function AdminDashboard() {
       <div className="bg-white p-6 rounded-lg shadow mt-5">
       <div className="bg-white p-6 rounded-lg shadow mt-5">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold mb-4">Show Users</h2>
+          <h2 className="text-xl font-semibold">Users</h2>
           <button
             onClick={() => setShowUsers((prev) => !prev)}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
