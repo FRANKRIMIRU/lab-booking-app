@@ -38,27 +38,3 @@ A full-stack MERN (MongoDB, Express, React, Node.js) web application for users t
 
 ---
 
-## 📁 Project Structure
-
-labbooking/
-│
-├── client/ # React frontend
-│ ├── public/
-│ └── src/
-│ ├── components/
-│ ├── pages/
-│ ├── App.jsx
-│ └── main.jsx
-│
-├── server/ # Express backend
-│ ├── config/
-│ ├── controllers/
-│ ├── middleware/
-│ ├── models/
-│ ├── routes/
-│ ├── .env # Environment variables (not pushed)
-│ └── server.js
-│
-├── .gitignore
-├── package.json
-└── README.md
