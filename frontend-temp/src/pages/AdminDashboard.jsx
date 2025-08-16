@@ -45,14 +45,7 @@ function AdminDashboard() {
         // EDIT flow
         const res = await axios.put(
           `http://localhost:5000/api/v1/tests/${currentId}`,
-          {
-            emoji,
-            name,
-            category,
-            price,
-            description,
-            availability,
-          },
+          { emoji, name, category, price, description, availability },
           { withCredentials: true }
         );
 
@@ -60,28 +53,20 @@ function AdminDashboard() {
           prev.map((test) => (test._id === currentId ? res.data : test))
         );
 
-        // Reset form and editing state
         setIsEditing(false);
         setCurrentId(null);
       } else {
         // ADD flow
         const res = await axios.post(
           "http://localhost:5000/api/v1/tests",
-          {
-            emoji,
-            name,
-            category,
-            price,
-            description,
-            availability,
-          },
+          { emoji, name, category, price, description, availability },
           { withCredentials: true }
         );
 
         setTests((prev) => [res.data, ...prev]);
       }
 
-      // Reset form fields and hide form
+      // Reset form
       setShowAddForm(false);
       setName("");
       setCategory("");
@@ -108,7 +93,7 @@ function AdminDashboard() {
     setDescription(test.description || "");
   };
 
-  // Fetch data on component mount and every 10 seconds
+  // Fetch data
   useEffect(() => {
     const fetchBookings = () => {
       axios
@@ -194,6 +179,7 @@ function AdminDashboard() {
             onSubmit={handleAddTest}
             className="my-4 space-y-4 bg-white border p-4 text-sm grid grid-cols-1 md:grid-cols-1 gap-4"
           >
+            {/* Emoji Picker */}
             <div className="mb-4">
               <label className="block mb-2 font-medium">
                 Emoji/Icon for Test:
@@ -227,6 +213,7 @@ function AdminDashboard() {
               )}
             </div>
 
+            {/* Inputs */}
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -265,6 +252,8 @@ function AdminDashboard() {
               placeholder="Description"
               rows={3}
             />
+
+            {/* Buttons */}
             <div className="flex justify-between items-center">
               <button
                 type="submit"
@@ -294,6 +283,7 @@ function AdminDashboard() {
           </form>
         )}
 
+        {/* Tests Table */}
         {showTests && tests.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border text-sm">
